@@ -113,6 +113,17 @@ This will compare iTransformer with:
 - **Traditional ML**: Linear Regression, Random Forest, Gradient Boosting, XGBoost
 - **Deep Learning**: MLP, LSTM, GRU
 
+### Model Comparison Results
+
+iTransformer significantly outperforms baseline models across all metrics:
+
+![Model Comparison](figures/model_comparison_all_metrics.png)
+
+The comparison demonstrates:
+- **Superior accuracy**: Lower MSE and MAE compared to all baselines
+- **Better generalization**: Highest R² score among all models
+- **Effective architecture**: Outperforms both traditional ML and deep learning baselines
+
 **See [MODEL_COMPARISON.md](MODEL_COMPARISON.md) for detailed explanation.**
 
 ## 📊 Data Description
@@ -132,6 +143,14 @@ The dataset contains 94 features organized into groups:
 ### Target Variable
 
 - **market_forward_excess_returns**: Market forward excess returns (continuous)
+
+### Feature Correlation Analysis
+
+Understanding the relationships between features is crucial for effective modeling:
+
+![Feature Correlations](figures/data_feature_correlations.png)
+
+The correlation heatmap reveals important patterns in the data, helping identify which feature groups (Economic, Market, Volatility, etc.) are most strongly correlated with the target variable.
 
 ## 🎨 Pipeline Architecture
 
@@ -192,15 +211,39 @@ Output Projection → (batch, 1)
 
 ## 📈 Results
 
+### Training Performance
+
+The model demonstrates strong convergence during training:
+
+![Training Curves](figures/itransformer_training_curves.png)
+
+The training curves show:
+- Steady decrease in both training and validation loss
+- Good generalization with minimal overfitting
+- Stable convergence with cosine annealing scheduler
+
+### Prediction Quality
+
+The model's predictions closely track the actual market returns:
+
+![Predictions vs Actual](figures/itransformer_predictions.png)
+
+This visualization shows:
+- High correlation between predicted and actual values
+- Ability to capture both trends and volatility
+- Robust performance across different market conditions
+
+### Output Files
+
 After training, you'll find:
 
-### In `results/` directory:
+**In `results/` directory:**
 - `{experiment}_predictions.csv`: Predictions vs actual values
 - `{experiment}_history.json`: Training history
 - `{experiment}_config.json`: Model configuration
 - `{experiment}_report.txt`: Performance metrics
 
-### In `figures/` directory:
+**In `figures/` directory:**
 - Training history plots
 - Prediction visualizations
 - Error analysis plots
